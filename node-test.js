@@ -12,7 +12,7 @@ app.get('/', cors(), (req, res) => {
     res.end('Hello World\n');
 });
 
-app.get('/home', cors(), (req, res) => {
+app.get('/urban', cors(), (req, res) => {
     urban = new UrbanTicketsController();
     urban.getTicketPrice(req.query).then(response => {
         res.statusCode = 200;
@@ -29,21 +29,37 @@ app.get('/home', cors(), (req, res) => {
         })
 
 });
-app.get('/inter-urban', cors(), (req, res) => {
+app.get('/inter-urban/:opt', cors(), (req, res) => {
     InterUrban = new InterUrbanTicketsController();
-    InterUrban.getTransportOptions(req.query).then(response => {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/json');
-        res.json(response)
-        res.end();
-    },
-        (error) => {
-            res.statusCode = 500;
+    if (req.params.opt === 'list') {
+        InterUrban.getTransportOptions(req.query).then(response => {
+            res.statusCode = 200;
             res.setHeader('Content-Type', 'text/json');
-            res.json(error);
-            console.error(error)
+            res.json(response)
             res.end();
-        })
+        },
+            (error) => {
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'text/json');
+                res.json(error);
+                console.error(error)
+                res.end();
+            })
+    } else if (req.params.opt === 'departures') {
+        InterUrban.getDepartures().then(response => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/json');
+            res.json(response)
+            res.end();
+        },
+            (error) => {
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'text/json');
+                res.json(error);
+                console.error(error)
+                res.end();
+            })
+    }
 
 });
 

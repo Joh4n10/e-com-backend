@@ -6,19 +6,16 @@ class InterUrbanTicketsController {
 
     IService = new InterUrbanService();
 
-    // getTicketPrice = (typeObj) => {
-    //     let zona = typeObj.zona;
-    //     let kategoria = typeObj.kategoria;
-    //     return this.Tservice.getTicketPrice(zona, kategoria);
+    getDepartures = () => {
+        return this.IService.getDepartures();
 
-    // }
+    }
 
 
     getTransportOptions = (typeObj) => {
         let nisja = typeObj.nisja;
         let destinacioni = typeObj.destinacioni;
-        let zona = nisja + '-' + destinacioni;
-        return this.IService.getTransportOptions(zona);
+        return this.IService.getTransportOptions(nisja, destinacioni);
 
     }
 
