@@ -10,7 +10,10 @@ class InterUrbanTicketsController {
         return this.IService.getDepartures();
 
     }
+    getArrivals = () => {
+        return this.IService.getArrivals();
 
+    }
 
     getTransportOptions = (typeObj) => {
         let nisja = typeObj.nisja;

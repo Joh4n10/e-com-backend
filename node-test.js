@@ -59,6 +59,20 @@ app.get('/inter-urban/:opt', cors(), (req, res) => {
                 console.error(error)
                 res.end();
             })
+    } else if (req.params.opt === 'arrivals') {
+        InterUrban.getArrivals().then(response => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/json');
+            res.json(response)
+            res.end();
+        },
+            (error) => {
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'text/json');
+                res.json(error);
+                console.error(error)
+                res.end();
+            })
     }
 
 });
