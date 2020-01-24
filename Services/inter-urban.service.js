@@ -12,10 +12,10 @@ class InterUrbanService {
     }
 
     getDepartures = () => {
-        return this.db.runQuery(`SELECT pro_qytetNisje FROM e_store.produkt where pro_emer='interurban'`);
+        return this.db.runQuery(`SELECT distinct pro_qytetNisje FROM e_store.produkt where pro_emer='interurban'`);
     }
     getArrivals = () => {
-        return this.db.runQuery(`SELECT pro_qytetMberritje FROM e_store.produkt where pro_emer='interurban'`);
+        return this.db.runQuery(`SELECT distinct pro_qytetMberritje FROM e_store.produkt where pro_emer='interurban'`);
     }
 
 }
